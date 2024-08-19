@@ -4,12 +4,12 @@ const userData = [
     {
         user_id: 1,
         user_name: 'ObsidianSovereign',
-        password: 'TheBlackMold',
+        password: '123456',
     },
     {
         user_id: 2,
-        user_name: 'this website is dumb.',
-        password: 'brad',
+        user_name: 'brad',
+        password: '7891011',
     },
 ];
 
