@@ -24,25 +24,35 @@
                     <h1 style="font-family:TEKO; 
                     font-weight:700;" 
                         class="title is-1 
-                    has-text-black mt-3 ml-1">
+                    has-text-black my-0 ml-1">
                         dotBBS
                     </h1>
                     <p style="font-family:TEKO; 
-                    font-weight:100; letter-spacing-5;" 
+                    font-weight:100; letter-spacing-5px;" 
                         class="
                     has-text-black mt-0 ml-1">
                         BULLETIN BOARD SYSTEM
                     </p>
                 </div>
             <div class="column columns is-mobile is-multiline is-two-thirds mt-3">
-                <button style="font-family:TEKO; font-weight:700;" class="column is-full-mobile is-full-tablet is-one-quarter-desktop button mx-2 px-4">HOME</button>
-                <button style="font-family:TEKO; font-weight:700;" class="column is-full-mobile is-full-tablet is-one-quarter-desktop button mx-2 px-4">DASHBOARD</button>
-                {{#unless userLoggedIn}}
-                <a class="column is-full-mobile is-full-tablet is-one-quarter-desktop button mx-2 px-4" href="/login">
-                    <button style="font-family:TEKO; font-weight:700;"  class="column is-full-mobile is-full-tablet is-one-quarter-desktop button mx-2 px-4">
-                        LOG IN
+                <a href="/">
+                <button style="font-family:TEKO; font-weight:700;" class="column is-full-mobile is-full-tablet is-one-quarter-desktop button mx-2 px-4">
+                    HOME
                     </button>
                 </a>
+                {{#if userLoggedIn}}
+                    <a href="/dashboard">
+                    <button style="font-family:TEKO; font-weight:700;" class="column is-full-mobile is-full-tablet is-one-quarter-desktop button mx-2 px-4">
+                    DASHBOARD
+                    </button>
+                    </a>
+                {{/if}}
+                {{#unless userLoggedIn}}
+                    <a href="/login">
+                    <button style="font-family:TEKO; font-weight:700;"  class="column is-full-mobile is-full-tablet is-one-quarter-desktop button mx-2 px-4">
+                        ACCESS
+                    </button>
+                    </a>
                 {{else}}
                 <button style="font-family:TEKO; font-weight:700;" class="column is-full-mobile is-full-tablet is-one-quarter-desktop button mx-2 px-4">LOG OUT</button>
                 <script src="/js/logout.js"></script>

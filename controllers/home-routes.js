@@ -30,4 +30,25 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+router.get('/dashboard', async (req, res) => {
+    try {
+        const userId = req.session.user_id;
+        const userPostData = await Post.findAll({
+            where: { user_id: userId },
+            include: [
+                {
+                    model: User,
+                    attributes: ['user_name'],
+                }
+            ]
+        });
+        res.render('dashboard', {
+            posts,
+        });
+    } catch (err) {
+        console.error('Error retrieving posts.', err);
+        res.status(500).json({ message: 'Error retrieving posts.' });
+    }
+});
+
 module.exports = router;

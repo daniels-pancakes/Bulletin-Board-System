@@ -1,1 +1,54 @@
-{{#each}}
+<section>
+    <h2 class="is-size-4 has-text-warning" style="font-family:TEKO; 
+        font-weight:700;">
+        CREATE NEW POST
+    </h2>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label" style="font-family:TEKO; 
+        font-weight:700;">SUBJECT</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <input class="input is-warning" type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label" style="font-family:TEKO; 
+        font-weight:700;">BODY</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <textarea class="textarea"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<section>
+    {{#each posts as |post|}}
+    <div class="card mx-5 mt-5 p-5">
+        <h2 class="is-size-4 has-text-warning" style="font-family:TEKO; 
+        font-weight:700;">
+            {{post.subject}}
+        </h2>
+        <p class="is-size-5" style="font-family:TEKO; 
+        font-weight:400;">
+        <div>
+            {{post.body}}
+        </div>
+        </p>
+        <p class="is-size-5 has-text-warning" style="font-family:TEKO; 
+        font-weight:400;">
+            Posted by: {{post.user.user_name}} on {{post.createdAt}}
+        </p>
+    </div>
+    {{/each}}
+</section>
