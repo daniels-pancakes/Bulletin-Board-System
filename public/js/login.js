@@ -9,13 +9,13 @@ const loginHandling = async (event) => {
             if (event.target.id ==='login-button') {
                 response = await fetch('/api/users/login', {
                     method: 'POST',
-                    body: JSON.stringify({ user_name, password }),
+                    body: JSON.stringify({ username, password }),
                     headers: { 'Content-Type': 'application/json' }
                 });
             } else if (event.target.id === 'reg-button') { 
                 response = await fetch('/api/users/', {
                 method: 'POST',
-                body: JSON.stringify({ user_name, password }),
+                body: JSON.stringify({ username, password }),
                 headers: { 'Content-Type': 'application/json' },
                 });
             }
