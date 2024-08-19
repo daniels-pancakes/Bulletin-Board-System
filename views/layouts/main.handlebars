@@ -16,20 +16,36 @@
                         is-full-mobile 
                         is-full-tablet 
                         is-one-sixth-desktop">
+                    <p style="font-family:TEKO; 
+                    font-weight:100;" 
+                        class="has-text-black mt-3 ml-1">
+                        DIGITAL OPERATIONS TERMINAL
+                    </p>
                     <h1 style="font-family:TEKO; 
                     font-weight:700;" 
                         class="title is-1 
                     has-text-black mt-3 ml-1">
                         dotBBS
                     </h1>
+                    <p style="font-family:TEKO; 
+                    font-weight:100;" 
+                        class="
+                    has-text-black mt-3 ml-1">
+                        BULLETIN BOARD SYSTEM
+                    </p>
                 </div>
             <div class="column columns is-mobile is-multiline is-two-thirds mt-3">
                 <button style="font-family:TEKO; font-weight:700;" class="column is-full-mobile is-full-tablet is-one-quarter-desktop button mx-2 px-4">HOME</button>
                 <button style="font-family:TEKO; font-weight:700;" class="column is-full-mobile is-full-tablet is-one-quarter-desktop button mx-2 px-4">DASHBOARD</button>
                 {{#unless userLoggedIn}}
-                <button style="font-family:TEKO; font-weight:700;" class="column is-full-mobile is-full-tablet is-one-quarter-desktop button mx-2 px-4">LOG IN</button>
+                <a href="/login">
+                    <button style="font-family:TEKO; font-weight:700;"  class="column is-full-mobile is-full-tablet  is-one-quarter-desktop button mx-2 px-4">
+                        LOG IN
+                    </button>
+                </a>
                 {{else}}
                 <button style="font-family:TEKO; font-weight:700;" class="column is-full-mobile is-full-tablet is-one-quarter-desktop button mx-2 px-4">LOG OUT</button>
+                <script src="/js/logout.js"></script>
                 {{/unless}}
             </div>
             <div class="column is-one-sixth"></div>
