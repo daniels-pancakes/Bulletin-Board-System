@@ -4,19 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
-    <title>BBS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet">
+    <title>dotBBS</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <button>HOME</button>
-            <button>DASHBOARD</button>
-            {{#unless userLoggedIn}}
-            <button>LOG IN</button>
-            {{else}}
-            <button>LOG OUT</button>
-            {{/unless}}
-        </nav>
+    <header class="my-3 has-background-warning">
+        <div class="columns is-centered is-multiline">
+                <div class="column 
+                        is-full-mobile 
+                        is-full-tablet 
+                        is-one-sixth-desktop">
+                    <h1 style="font-family:TEKO; 
+                    font-weight:700;" 
+                        class="title is-1 
+                    has-text-black mt-3 ml-1">
+                        dotBBS
+                    </h1>
+                </div>
+            <div class="column columns is-mobile is-multiline is-two-thirds mt-3">
+                <button style="font-family:TEKO; font-weight:700;" class="column is-full-mobile is-full-tablet is-one-quarter-desktop button mx-2 px-4">HOME</button>
+                <button style="font-family:TEKO; font-weight:700;" class="column is-full-mobile is-full-tablet is-one-quarter-desktop button mx-2 px-4">DASHBOARD</button>
+                {{#unless userLoggedIn}}
+                <button style="font-family:TEKO; font-weight:700;" class="column is-full-mobile is-full-tablet is-one-quarter-desktop button mx-2 px-4">LOG IN</button>
+                {{else}}
+                <button style="font-family:TEKO; font-weight:700;" class="column is-full-mobile is-full-tablet is-one-quarter-desktop button mx-2 px-4">LOG OUT</button>
+                {{/unless}}
+            </div>
+            <div class="column is-one-sixth"></div>
+        </div>
     </header>
     <main>
         {{{ body }}}

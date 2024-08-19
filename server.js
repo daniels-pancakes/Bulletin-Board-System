@@ -7,10 +7,15 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 
 // JavaScript comm w/ SQL (postgres)
-const sequelize = require('./confic/connection');
+const sequelize = require('./config/connection');
 
 // Persist db
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+const hbs = exphbs.create();
 
 const sess = {
     secret: process.env.SESSION_SECRET,
@@ -23,6 +28,7 @@ const sess = {
 };
 
 app.use(session(sess));
+
 // Templating construction of HTML
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -35,6 +41,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
+
+
 
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log('Now listening'));

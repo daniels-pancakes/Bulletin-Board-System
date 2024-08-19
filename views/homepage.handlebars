@@ -1,7 +1,20 @@
 <section>
-{{#each posts as |post|}}
-<h2>{{{post.subject}}}</h2>
-<p>{{{post.body}}}</p>
-<p>{{{post.poster}}}</p>
-{{/each}}
+    {{#each posts as |post|}}
+    <div class="card mx-5 mt-5 p-5">
+        <h2 class="is-size-4 has-text-warning" style="font-family:TEKO; 
+        font-weight:700;">
+            {{post.subject}}
+        </h2>
+        <p class="is-size-5" style="font-family:TEKO; 
+        font-weight:400;">
+            <div>
+            {{post.body}}
+            </div>
+        </p>
+        <p class="is-size-5 has-text-warning" style="font-family:TEKO; 
+        font-weight:400;">
+            Posted by: {{post.user.user_name}} on {{post.createdAt}}
+        </p>
+    </div>
+    {{/each}}
 </section>

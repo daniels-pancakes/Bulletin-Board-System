@@ -11,6 +11,20 @@ Board.init(
             primaryKey: true,
             autoIncrement: true,
         },
-});
+        board_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        
+    },
+            // Options
+    {
+        sequelize,
+        timestamps: true,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'board',
+    }
+);
 
 module.exports = Board;

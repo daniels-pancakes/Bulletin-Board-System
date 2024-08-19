@@ -16,12 +16,16 @@ Comment.init(
             allowNull: false,
         },
         poster: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false,
             references: {
                 model: 'user',
                 key: 'user_id',
                 },
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            allowNull: true,
         },
         post_thread_id: {
             type: DataTypes.INTEGER,
@@ -38,8 +42,8 @@ Comment.init(
         timestamps: true,
         freezeTableName: true,
         underscored: true,
-        modelName: 'post',
+        modelName: 'comment',
     }
 );
 
-module.exports = Post;
+module.exports = Comment;

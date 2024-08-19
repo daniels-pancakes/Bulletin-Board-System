@@ -28,8 +28,13 @@ User.init(
             }
         },
     },
+        // Options
     {
-
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'user',
     }
 );
 

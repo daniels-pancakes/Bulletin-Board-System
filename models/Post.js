@@ -20,7 +20,7 @@ Post.init(
             allowNull: false,
         },
         poster: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false,
             references: {
                 model: 'user',
@@ -28,7 +28,7 @@ Post.init(
                 },
         },
         board_src: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false,
             references: {
                 model: 'board',
