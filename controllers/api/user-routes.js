@@ -14,10 +14,7 @@ console.log(req.body);
     //     return;
     // }
 
-    const newUser = await User.create({
-        user_name: req.body.user_name,
-        password: req.body.password
-  });
+    const newUser = await User.create(req.body);
 
     req.session.save(() => {
       req.session.user_id = newUser.user_id;
