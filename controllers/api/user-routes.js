@@ -7,12 +7,12 @@ const bcrypt = require('bcrypt');
 router.post('/signup', async (req, res) => {
 console.log(req.body);
   try {
-    const userData = await User.findOne({ where: { user_name: req.body.user_name } });
+    // const userData = await User.findOne({ where: { user_name: req.body.user_name } });
 
-    if (userData) {
-        res.status(400).render('login', { message: 'Invalid username or password' });
-        return;
-    }
+    // if (userData) {
+    //     res.status(400).render('login', { message: 'Invalid username or password' });
+    //     return;
+    // }
 
     const newUser = await User.create({
         user_name: req.body.user_name,
