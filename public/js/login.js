@@ -13,7 +13,7 @@ const loginHandling = async (event) => {
                     headers: { 'Content-Type': 'application/json' }
                 });
             } else if (event.target.id === 'reg-button') { 
-                response = await fetch('/api/users/', {
+                response = await fetch('/api/users/signup', {
                 method: 'POST',
                 body: JSON.stringify({ user_name, password }),
                 headers: { 'Content-Type': 'application/json' },

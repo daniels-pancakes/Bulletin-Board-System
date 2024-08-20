@@ -4,7 +4,7 @@ const { User } = require('../../models');
 const bcrypt = require('bcrypt');
 
 // If a POST request is made to /api/users, a new user is created. The user id and logged in state is saved to the session within the request object.
-router.post('/', async (req, res) => {
+router.post('/signup', async (req, res) => {
 console.log(req.body);
   try {
     const userData = await User.findOne({ where: { user_name: req.body.user_name } });
