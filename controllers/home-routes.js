@@ -42,8 +42,11 @@ router.get('/dashboard', async (req, res) => {
                 }
             ]
         });
+        userPosts = userPostData.map((post) =>
+        post.get({ plain: true }) 
+        );
         res.render('dashboard', {
-            posts,
+            userPosts,
         });
     } catch (err) {
         console.error('Error retrieving posts.', err);
