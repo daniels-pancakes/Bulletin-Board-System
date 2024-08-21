@@ -12,7 +12,7 @@ const sequelize = require('./config/connection');
 
 // Persist db
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const { Board } = require('../models');
+const { Board } = require('./models');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
