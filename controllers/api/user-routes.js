@@ -1,6 +1,7 @@
 const router = require('express').Router();
 // Import the User model from the models folder
 const { User } = require('../../models');
+const { Post } = require('../../models');
 const bcrypt = require('bcrypt');
 
 // If a POST request is made to /api/users, a new user is created. The user id and logged in state is saved to the session within the request object.
@@ -51,6 +52,20 @@ router.post('/login', async (req, res) => {
   } catch (err) {
     console.error(`Error during login ${err}`);
     res.status(400).json(err);
+  }
+});
+
+router.post('/create-post', async (req, res) => {
+  if (req.session.userLoggedIn) {
+    try {
+      const createPost = await Post.create({subject: req.body.subject, body: req.body.body, poster: req.session.user_id, board_src: 1});
+      res.redirect('/dashboard');
+    } catch (err) {
+      console.error(`Error during post creation ${err}`);
+      res.status(400).json(err);
+    }
+  } else {
+    res.status(404).end();
   }
 });
 

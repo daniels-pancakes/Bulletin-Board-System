@@ -37,6 +37,10 @@ router.get('/dashboard', async (req, res) => {
     if (req.session.userLoggedIn) {
         try {
             const userId = req.session.user_id;
+            const user = await User.findOne({
+                where: { user_id:userId },
+                attributes: ['user_name']
+            });
             const userPostData = await Post.findAll({
                 where: { user_id: userId },
                 include: [
@@ -52,6 +56,7 @@ router.get('/dashboard', async (req, res) => {
             res.render('dashboard', {
                 userPosts,
                 userLoggedIn: req.session.userLoggedIn,
+                user_name: user.user_name,
             });
         } catch (err) {
             console.error('Error retrieving posts.', err);

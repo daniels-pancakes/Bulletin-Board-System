@@ -1,6 +1,13 @@
 <section class="m-5">
     <h2 class="is-size-4 has-text-warning" style="font-family:TEKO; 
         font-weight:700;">
+        {{user_name}}'s dashboard
+    </h2>
+</section>
+
+<section class="m-5">
+    <h2 class="is-size-4 has-text-warning" style="font-family:TEKO; 
+        font-weight:700;">
         CREATE NEW POST
     </h2>
     <div class="field is-horizontal">
@@ -11,7 +18,7 @@
         <div class="field-body">
             <div class="field">
                 <div class="control">
-                    <input class="input is-warning" type="text">
+                    <input class="input is-warning" type="text" id="subject">
                 </div>
             </div>
         </div>
@@ -25,11 +32,14 @@
         <div class="field-body">
             <div class="field">
                 <div class="control">
-                    <textarea class="textarea"></textarea>
+                    <textarea class="textarea" id="body"></textarea>
                 </div>
             </div>
         </div>
     </div>
+    <button class="button is-warning" id="create-button">
+        SUBMIT
+    </button>
 
 </section>
 <section>
@@ -52,3 +62,4 @@
     </div>
     {{/each}}
 </section>
+<script src="/js/post.js"></script>
