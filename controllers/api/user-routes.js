@@ -5,12 +5,13 @@ const bcrypt = require('bcrypt');
 
 // If a POST request is made to /api/users, a new user is created. The user id and logged in state is saved to the session within the request object.
 router.post('/signup', async (req, res) => {
-console.log(req.body); // is returning the following { user_name: '', password: '' }
+console.log('Server received: ', req.body); // is returning the following { user_name: '', password: '' }
   try {
     const newUser = await User.create(req.body);
     req.session.save(() => {
       req.session.user_id = newUser.user_id;
       req.session.userLoggedIn = true;
+      console.log('User succesfully created. Redirecting.');
       res.redirect('/dashboard');
     });
   } catch (err) {
@@ -23,6 +24,7 @@ console.log(req.body); // is returning the following { user_name: '', password: 
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { user_name: req.body.user_name } });
+    console.log('Login endpoint located User.');
 
     if (!userData) {
       res
@@ -40,6 +42,7 @@ router.post('/login', async (req, res) => {
     }
 
     req.session.save(() => {
+      console.log(`${userData.user_name} Session created.`);
       req.session.user_id = userData.user_id;
       req.session.userLoggedIn = true;
       res.redirect('/dashboard');
