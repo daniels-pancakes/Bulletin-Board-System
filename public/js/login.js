@@ -26,7 +26,7 @@ const loginHandling = async (event) => {
                 document.location.replace('/');
                 } else {
                 console.log(response);
-                console.error('Failed to login.', error);
+                console.error('Failed to login.');
                 }
         } catch (error) {
             console.error('Error during login:', error);

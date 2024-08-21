@@ -1,3 +1,4 @@
+console.log("Server starting...");
 // Compatibility and pathing for files
 const path = require('path');
 // HTTP API server requests
