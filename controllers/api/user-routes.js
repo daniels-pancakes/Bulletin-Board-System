@@ -5,23 +5,16 @@ const bcrypt = require('bcrypt');
 
 // If a POST request is made to /api/users, a new user is created. The user id and logged in state is saved to the session within the request object.
 router.post('/signup', async (req, res) => {
-console.log(req.body);
+console.log(req.body); // is returning the following { user_name: '', password: '' }
   try {
-    // const userData = await User.findOne({ where: { user_name: req.body.user_name } });
-
-    // if (userData) {
-    //     res.status(400).render('login', { message: 'Invalid username or password' });
-    //     return;
-    // }
-
     const newUser = await User.create(req.body);
-
     req.session.save(() => {
       req.session.user_id = newUser.user_id;
       req.session.userLoggedIn = true;
       res.redirect('/dashboard');
     });
   } catch (err) {
+    console.error('Error during signup', err);
     res.status(400).json(err);
   }
 });
@@ -37,7 +30,6 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
-
     const validPassword = await bcrypt.compare(req.body.password, userData.password);
 
     if (!validPassword) {
@@ -58,21 +50,14 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.post('/dashboard', (req, res) => {
-  if (req.session.userLoggedIn) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
-});
-
 // If a POST request is made to /api/users/logout, the function checks the logged_in state in the request.session object and destroys that session if logged_in is true.
 router.post('/logout', (req, res) => {
   if (req.session.userLoggedIn) {
-    req.session.destroy(() => {
-      res.status(204).end();
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).json({ error: 'Failed to log out.'});
+      }
+      res.redirect('/'); // fyi redirect is just built different, relative path is based on the web application
     });
   } else {
     res.status(404).end();

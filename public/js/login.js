@@ -5,6 +5,7 @@ const loginHandling = async (event) => {
     const password = document.querySelector('#password').value.trim();
     
     if (user_name && password) {
+        try {
             let response;
             if (event.target.id ==='login-button') {
                 response = await fetch('/api/users/login', {
@@ -20,12 +21,18 @@ const loginHandling = async (event) => {
                 });
             }
 
-        if (response.ok) {
-            document.location.replace('/');
-        } else {
-            console.error('Failed to login.')
+            if (response.ok) {
+                console.log('Login successful');
+                document.location.replace('/');
+                } else {
+                console.error('Failed to login.')
+                }
+        } catch (error) {
+            console.error('Error during login:', error);
         }
-        }
+    } else {
+        console.error('Username or password is missing.');
+    }
 };
 document.querySelector('#login-button').addEventListener('click', loginHandling);
 document.querySelector('#reg-button').addEventListener('click', loginHandling);

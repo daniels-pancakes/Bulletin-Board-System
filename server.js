@@ -19,7 +19,12 @@ const hbs = exphbs.create();
 
 const sess = {
     secret: process.env.SESSION_SECRET,
-    cookie: {},
+    cookie: {
+        maxAge: 60 * 60 * 1000,
+        httpOnly: true,
+        secure: false,
+        sameSite: 'strict',
+    },
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
@@ -45,5 +50,5 @@ app.use(routes);
 
 
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log('Now listening'));
+    app.listen(PORT, () => console.log(`Local http://localhost:${PORT} Web https://bulletin-board-system.onrender.com/`));
 });

@@ -5,9 +5,9 @@ router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll({
                     include: [
-                                { model: User,
-                                    attributes: ['user_name'],
-                                }
+                        { model: User,
+                            attributes: ['user_name'],
+                        }
                     ],
                     attributes: ['subject', 'body', 'poster', 'createdAt',]
         });
@@ -18,6 +18,7 @@ router.get('/', async (req, res) => {
         console.log(posts);
         res.render('homepage', {
             posts,
+            userLoggedIn: req.session.userLoggedIn,
         });
 
     } catch (err) {
@@ -31,26 +32,31 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/dashboard', async (req, res) => {
-    try {
-        const userId = req.session.user_id;
-        const userPostData = await Post.findAll({
-            where: { user_id: userId },
-            include: [
-                {
-                    model: User,
-                    attributes: ['user_name'],
-                }
-            ]
-        });
-        userPosts = userPostData.map((post) =>
-        post.get({ plain: true }) 
+    if (req.session.userLoggedIn) {
+        try {
+            const userId = req.session.user_id;
+            const userPostData = await Post.findAll({
+                where: { user_id: userId },
+                include: [
+                    {
+                        model: User,
+                        attributes: ['user_name'],
+                    }
+                ]
+            });
+            userPosts = userPostData.map((post) =>
+            post.get({ plain: true }) 
         );
-        res.render('dashboard', {
-            userPosts,
-        });
-    } catch (err) {
-        console.error('Error retrieving posts.', err);
-        res.status(500).json({ message: 'Error retrieving posts.' });
+            res.render('dashboard', {
+                userPosts,
+                userLoggedIn: req.session.userLoggedIn,
+            });
+        } catch (err) {
+            console.error('Error retrieving posts.', err);
+            res.status(500).json({ message: 'Error retrieving posts.' });
+        }
+    } else {
+        res.redirect('/login');
     }
 });
 
