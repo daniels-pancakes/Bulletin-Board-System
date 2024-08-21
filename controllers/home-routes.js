@@ -32,6 +32,7 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/dashboard', async (req, res) => {
+    console.log('Checking session: ', req.session);
     if (req.session.userLoggedIn) {
         try {
             const userId = req.session.user_id;
