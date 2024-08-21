@@ -1,11 +1,11 @@
 const { Board } = require('../models');
 
-const boardData = [
-    {
-        board_name: 'BBS',
-    },
-];
-
-const seedBoard = () => Board.bulkCreate(boardData);
+const seedBoard = async () => {
+    await Board.create({
+        id: 1,
+        name: 'GENERAL',
+        description: 'General discussion board.'
+    });
+};
 
 module.exports = seedBoard;

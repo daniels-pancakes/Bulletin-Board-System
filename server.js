@@ -12,6 +12,7 @@ const sequelize = require('./config/connection');
 
 // Persist db
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const { Board } = require('../models');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -52,6 +53,14 @@ app.use(routes);
 
 
 
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: false }).then(async () => {
+    const board = await Board.findOrCreate({
+        where: { id: 1 },
+        defaults: {
+            name: 'GENERAL',
+            description: 'General discussion',
+        } 
+    });
+    console.log('General discussion board created or found on server.')
     app.listen(PORT, () => console.log(`Local http://localhost:${PORT} Web https://bulletin-board-system.onrender.com/`));
 });

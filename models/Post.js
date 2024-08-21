@@ -27,14 +27,14 @@ Post.init(
                 key: 'user_id',
                 },
         },
-        // board_src: {
-        //     type: DataTypes.INTEGER,
-        //     allowNull: true,
-        //     references: {
-        //         model: 'board',
-        //         key: 'board_id',
-        //         },
-        // },
+        board_src: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+                model: 'board',
+                key: 'board_id',
+                },
+        },
     },
         // Options
     {
