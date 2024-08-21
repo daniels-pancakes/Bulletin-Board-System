@@ -32,6 +32,8 @@ const sess = {
     })
 };
 
+console.log('Current NODE_Env:', process.env.NODE_ENV);
+
 app.use(session(sess));
 
 // Templating construction of HTML
