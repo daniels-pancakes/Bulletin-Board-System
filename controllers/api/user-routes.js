@@ -49,6 +49,7 @@ router.post('/login', async (req, res) => {
     });
 
   } catch (err) {
+    console.error(`Error during login ${err}`);
     res.status(400).json(err);
   }
 });
