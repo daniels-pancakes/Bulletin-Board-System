@@ -58,7 +58,7 @@ router.post('/login', async (req, res) => {
 router.post('/create-post', async (req, res) => {
   if (req.session.userLoggedIn) {
     try {
-      const createPost = await Post.create({subject: req.body.subject, body: req.body.body, poster: req.session.user_id, board_src: 1});
+      const createPost = await Post.create({subject: req.body.subject, body: req.body.body, poster: req.session.user_id});
       res.redirect('/dashboard');
     } catch (err) {
       console.error(`Error during post creation ${err}`);
