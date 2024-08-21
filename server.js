@@ -55,10 +55,9 @@ app.use(routes);
 
 sequelize.sync({ force: false }).then(async () => {
     const board = await Board.findOrCreate({
-        where: { id: 1 },
+        where: { board_id: 1 },
         defaults: {
             name: 'GENERAL',
-            description: 'General discussion',
         } 
     });
     console.log('General discussion board created or found on server.')
