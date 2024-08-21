@@ -56,6 +56,7 @@ router.get('/dashboard', async (req, res) => {
             res.status(500).json({ message: 'Error retrieving posts.' });
         }
     } else {
+        console.log('Server attempted to load dashboard but failed. Redirect to login.');
         res.redirect('/login');
     }
 });
