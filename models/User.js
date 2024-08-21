@@ -38,7 +38,7 @@ User.init(
             },
         },
         sequelize,
-        timestamps: true, // I had to change this to true due to existing data in the db apparently
+        timestamps: false, // I had to change this to true due to existing data in the db apparently
         freezeTableName: true,
         underscored: true,
         modelName: 'user',
