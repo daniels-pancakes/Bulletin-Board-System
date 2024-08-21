@@ -29,7 +29,7 @@ Post.init(
         },
         board_src: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
             references: {
                 model: 'board',
                 key: 'board_id',
